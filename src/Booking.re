@@ -1,8 +1,25 @@
-type state =
+type trip_ =
+  | OneWay
+  | OneWayWithDeparture(Js.Date.t)
+  | RoundTrip
+  | RoundTripWithOnlyDeparture(Js.Date.t)
+  | RoundTripWithOnlyReturn(Js.Date.t)
+  | RoundTripWithBothDates(Js.Date.t, Js.Date.t);
+
+let tripToString_ =
+  fun
+  | OneWay
+  | OneWayWithDeparture(_) => "One Way"
+  | RoundTrip
+  | RoundTripWithOnlyDeparture(_)
+  | RoundTripWithOnlyReturn(_)
+  | RoundTripWithBothDates(_, _) => "Round Trip";
+
+type trip =
   | OneWay
   | RoundTrip;
 
-let stateToString =
+let tripToString =
   fun
   | OneWay => "OneWay"
   | RoundTrip => "RoundTrip";
@@ -59,7 +76,7 @@ let make = (~name) => {
         <input
           onChange={handleChange(OneWay)}
           name
-          value={stateToString(OneWay)}
+          value={tripToString(OneWay)}
           checked={OneWay == state}
           className="mr-2"
           type_="radio"
@@ -70,7 +87,7 @@ let make = (~name) => {
         <input
           onChange={handleChange(RoundTrip)}
           name
-          value={stateToString(RoundTrip)}
+          value={tripToString(RoundTrip)}
           checked={RoundTrip == state}
           className="mr-2"
           type_="radio"
