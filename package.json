@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bs-moment": "^0.4.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "reason-react": ">=0.7.0",
